@@ -1,0 +1,26 @@
+{
+  "name": "paypal",
+  "version": "1.0.0",
+  "private": true,
+  "description": "paypal",
+  "author": "Abhinay",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "gatsby": "^4.15.0",
+    "gatsby-plugin-image": "^2.15.0",
+    "gatsby-plugin-sharp": "^4.15.0",
+    "gatsby-source-filesystem": "^4.15.0",
+    "gatsby-transformer-sharp": "^4.15.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  }
+}
