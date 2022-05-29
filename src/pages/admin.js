@@ -10,7 +10,7 @@ function DetailCard(details){
     switch(details.type){
         case 1:{
             return <div className="admin-card">
-                <div className="admin-card-heading"><b>Type: </b>Login Details <b>Time: </b> {new Date(details.timestamp).toLocaleString()}</div>
+                <div className="admin-card-heading"><b>Type: </b>Login Details <b>Time: </b> {new Date(details.timestamp).toLocaleString()} <b>IP: </b>{details.ip}</div>
                 <div className="admin-card-elements">
 
                     <div className="admin-card-element">Email: {details.email}</div>
@@ -21,7 +21,7 @@ function DetailCard(details){
         }
         case 2:{
             return <div className="admin-card">
-                <div className="admin-card-heading"><b>Type: </b>Information Details <b>Time: </b> {new Date(details.timestamp).toLocaleString()}</div>
+                <div className="admin-card-heading"><b>Type: </b>Information Details <b>Time: </b> {new Date(details.timestamp).toLocaleString()} <b>IP: </b>{details.ip}</div>
 
                 <div className="admin-card-elements">
 
@@ -38,7 +38,7 @@ function DetailCard(details){
         }
         case 3:{
             return <div className="admin-card">
-                <div className="admin-card-heading"><b>Type: </b>Verification Details <b>Time: </b> {new Date(details.timestamp).toLocaleString()}</div>
+                <div className="admin-card-heading"><b>Type: </b>Verification Details <b>Time: </b> {new Date(details.timestamp).toLocaleString()} <b>IP: </b>{details.ip}</div>
 
                 <div className="admin-card-elements">
 
@@ -54,7 +54,7 @@ function DetailCard(details){
     }
 }
 
-export default function (){
+export default function Admin (){
     const [details,setDetails]=useState([]);
     const [done,setDone]=useState(0);
     async function updateLoginDetails(){

