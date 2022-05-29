@@ -71,6 +71,9 @@
 }
 
 @media (max-width: 991px) {
+    .u-verification-section-1 .u-text-1 {
+        font-size: 1rem;
+    }
    .u-section-2 {
     min-height: 381px;
   }

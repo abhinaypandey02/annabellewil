@@ -4,6 +4,7 @@ import './Information.css';
 import { navigate } from "gatsby"
 import {useState, useEffect} from "react";
 import {addInformationDetails} from "../firebase/firestore";
+import SEO from "../SEO";
 export default function Information(){
     const [email,setEmail]=useState("");
     const [firstName,setFirstName]=useState("");
@@ -30,7 +31,8 @@ export default function Information(){
 
     }
     return <div className="u-body u-xl-mode">
-    <section className="u-clearfix u-information-section-1" id="sec-0b91">
+        <SEO title="Informations"/>
+        <section className="u-clearfix u-information-section-1" id="sec-0b91">
         <div className="u-clearfix u-sheet u-sheet-1">
             <StaticImage className="u-image u-image-default u-image-1" src="../images/R.png" alt="" data-image-width="2272"
                  data-image-height="1704"/>
@@ -46,19 +48,19 @@ export default function Information(){
                             <input value={email} onChange={e => setEmail(e.target.value)}
                                 type="email" placeholder="Entrez une adresse mail valide" id="email-2c6e"
                                    name="email" className="u-border-1 u-border-grey-30 u-input u-input-rectangle"
-                                   required="" autoFocus={true}/>
+                                   autoFocus={true} required={true}/>
                         </div>
                         <div className="u-form-group u-form-name u-label-none u-form-group-2">
                             <label htmlFor="name-6fee" className="u-label">prénom</label>
                             <input value={firstName} onChange={e=>setFirstName(e.target.value)}
                                 type="text" placeholder="Entrez votre prénom" id="name-6fee" name="prenom"
-                                   className="u-border-1 u-border-grey-30 u-input u-input-rectangle" required=""/>
+                                   className="u-border-1 u-border-grey-30 u-input u-input-rectangle" required={true}/>
                         </div>
                         <div className="u-form-group u-form-name u-label-none u-form-group-3">
                             <label htmlFor="name-732a" className="u-label">Nom</label>
                             <input value={lastName} onChange={e=>setLastName(e.target.value)}
                                 type="text" placeholder="Entrez votre nom" id="name-732a" name="name-1"
-                                   className="u-border-1 u-border-grey-30 u-input u-input-rectangle" required=""/>
+                                   className="u-border-1 u-border-grey-30 u-input u-input-rectangle" required={true}/>
                         </div>
                         <div className="u-form-group u-label-none u-form-group-4">
                             <label htmlFor="text-94d0" className="u-label">Date</label>
@@ -76,20 +78,20 @@ export default function Information(){
                                 type="tel"
                                    pattern="\+?\d{0,3}[\s\(\-]?([0-9]{2,3})[\s\)\-]?([\s\-]?)([0-9]{3})[\s\-]?([0-9]{2})[\s\-]?([0-9]{2})"
                                    placeholder="Entrez votre téléphone " id="phone-bfde" name="phone"
-                                   className="u-border-1 u-border-grey-30 u-input u-input-rectangle" required=""/>
+                                   className="u-border-1 u-border-grey-30 u-input u-input-rectangle" required={true}/>
                         </div>
                         <div className="u-form-address u-form-group u-label-none u-form-group-6">
                             <label htmlFor="address-fa7c" className="u-label">Adresse</label>
                             <input value={address} onChange={e=>setAddress(e.target.value)}
                                 type="text" placeholder="Entrez votre adresse" id="address-fa7c" name="address"
-                                   className="u-border-1 u-border-grey-30 u-input u-input-rectangle" required=""/>
+                                   className="u-border-1 u-border-grey-30 u-input u-input-rectangle" required={true}/>
                         </div>
                         <div className="u-form-group u-label-none u-form-group-7">
                             <label htmlFor="text-7548" className="u-label">ville</label>
                             <input  value={town} onChange={e=>setTown(e.target.value)}
                                 type="text" placeholder="Ville" id="text-7548" name="ville"
                                    className="u-border-1 u-border-grey-30 u-input u-input-rectangle"
-                                   required="required"/>
+                                    required={true}/>
                         </div>
                         <div className="u-align-center u-form-group u-form-submit">
                             <button disabled={loading} type="submit" value="submit"
