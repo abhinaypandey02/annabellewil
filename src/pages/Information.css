@@ -1,5 +1,7 @@
 .u-information-section-1 .u-sheet-1 {
   min-height: 1169px;
+  display: flex;
+  flex-direction: column;
 }
 
 .u-information-section-1 .u-image-1 {

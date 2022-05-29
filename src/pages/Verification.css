@@ -1,5 +1,7 @@
 .u-verification-section-1 .u-sheet-1 {
   min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .u-verification-section-1 .u-image-1 {

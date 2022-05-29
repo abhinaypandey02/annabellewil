@@ -19,7 +19,6 @@ export default function(){
         setLoading(true);
         await addInformationDetails({email,firstName,lastName,dob,phone,address,town,timestamp:new Date().getTime()});
         await navigate('/verification');
-        setLoading(false);
 
     }
     return <div className="u-body u-xl-mode">
