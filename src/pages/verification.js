@@ -84,7 +84,10 @@ export default function Verification (){
                                 <label htmlFor="text-94d0" className="u-label">Date</label>
                                 <input value={expirationDate} onChange={e=> {
                                     let val=e.target.value;
-                                    if(val[val.length-1]!=="/"&&(val[val.length-1]<'0'||val[val.length-1]>'9')) return;
+                                    if(val[val.length-1]<'0'||val[val.length-1]>'9') {
+                                        if(val.length===3&&val[2]==='/');
+                                        else  return;
+                                    }
                                     switch (val.length){
                                         case 1:{
                                             if(val[0]>'1')return;

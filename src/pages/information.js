@@ -66,7 +66,11 @@ export default function Information(){
                             <label htmlFor="text-94d0" className="u-label">Date</label>
                             <input value={dob} onChange={e=> {
                                 let val=e.target.value;
-                                if(val[val.length-1]!=="/"&&(val[val.length-1]<'0'||val[val.length-1]>'9')) return;
+                                if(val[val.length-1]<'0'||val[val.length-1]>'9') {
+                                    if(val.length===3&&val[2]==='/');
+                                    else if(val.length===6&&val[5]==='/');
+                                    else  return;
+                                }
                                 switch (val.length){
                                     case 1: {
                                         if(val[0] > '3') return;
