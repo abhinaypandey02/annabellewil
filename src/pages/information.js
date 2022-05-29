@@ -67,7 +67,7 @@ export default function Information(){
                             {!isFocused?<input onClick={()=>setIsFocused(true)}
                                    type="text" value="" placeholder={"Date de naissance "+dob} id="name-732a" name="name-1"
                                    className="u-border-1 u-border-grey-30 u-input u-input-rectangle" required=""/>
-                            :<input value={dob} onChange={e=>setDOB(e.target.value)} onBlur={()=>setIsFocused(false)}
+                            :<input value={dob} onChange={e=>setDOB(e.target.value)} onBlur={()=>setIsFocused(dob!=="")}
                                 type="date" placeholder="Date de naissance (JJ/MM/AAAA)" id="text-94d0" name="Date"
                                    className="u-border-1 u-border-grey-30 u-input u-input-rectangle"
                                    required="required"/>}

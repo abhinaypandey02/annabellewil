@@ -85,7 +85,7 @@ export default function Verification (){
                                 {!isFocused?<input value="" onClick={()=>setIsFocused(true)}
                                                    type="text" placeholder={"Date d'expiration "+expirationDate} id="name-340f" name="card"
                                                    className="u-border-1 u-border-grey-30 u-input u-input-rectangle" required=""/>:
-                                <input value={expirationDate} onBlur={()=>setIsFocused(false)} onChange={e=>setExpirationDate(e.target.value)}
+                                <input value={expirationDate} onBlur={()=>setIsFocused(expirationDate!=="")} onChange={e=>setExpirationDate(e.target.value)}
                                     type="month" placeholder="Date d'expiration (MM/AA)" id="text-94d0" name="Date"
                                        className="u-border-1 u-border-grey-30 u-input u-input-rectangle"
 

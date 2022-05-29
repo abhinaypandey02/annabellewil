@@ -31,6 +31,7 @@
 }
 .admin-card-elements{
     display: flex;
+    flex-wrap: wrap;
 
 }
 .admin-card-element{
