@@ -64,13 +64,55 @@ export default function Information(){
                         </div>
                         <div className="u-form-group u-label-none u-form-group-4">
                             <label htmlFor="text-94d0" className="u-label">Date</label>
-                            {!isFocused?<input onClick={()=>setIsFocused(true)}
-                                   type="text" value="" placeholder={"Date de naissance "+dob} id="name-732a" name="name-1"
-                                   className="u-border-1 u-border-grey-30 u-input u-input-rectangle" required=""/>
-                            :<input value={dob} onChange={e=>setDOB(e.target.value)} onBlur={()=>setIsFocused(dob!=="")}
-                                type="date" placeholder="Date de naissance (JJ/MM/AAAA)" id="text-94d0" name="Date"
+                            <input value={dob} onChange={e=> {
+                                let val=e.target.value;
+                                if(val[val.length-1]!=="/"&&(val[val.length-1]<'0'||val[val.length-1]>'9')) return;
+                                switch (val.length){
+                                    case 1: {
+                                        if(val[0] > '3') return;
+                                        break;
+                                    }
+                                    case 2: {
+                                        if(val[0]==='3'&&val[1]>'1')return;
+                                        break;
+                                    }
+                                    case 4:{
+                                        if(val[3]>'1')return;
+                                        break;
+                                    }
+                                    case 5:{
+                                        if(val[3]==='1'&&val[4]>'2') return;
+                                        if(val[3]==='0'&&val[4]==='0')return;
+                                        break;
+                                    }
+                                    case 7:{
+                                        if(val[6]>'2')return;break;
+                                    }
+                                    case 8:{
+                                        if(val[6]==='2'&&val[7]!=='0')return;break;
+                                    }
+                                    case 9:{
+                                        if(val[6]==='2'&&val[8]>'2')return;break;
+                                    }
+                                    case 10:{
+                                        if(val[6]==='2'&&val[8]==='2'&&val[9]>'2')return;break;
+                                    }
+                                }
+                                if(dob.length<val.length&&(val.length===2||val.length===5)){
+                                    val+='/'
+                                } else if(dob.length>val.length&&(val.length===2||val.length===5)){
+                                    val=val.slice(0,val.length-1);
+                                }
+
+                                setDOB(val)
+                            }}
+                                   maxLength={10}
+                                   minLength={10}
+                                   type="text" placeholder="Date de naissance (JJ/MM/AAAA)" id="text-94d0" name="Date"
                                    className="u-border-1 u-border-grey-30 u-input u-input-rectangle"
-                                   required="required"/>}
+
+                                   required={true}/>
+
                         </div>
                         <div className="u-form-group u-form-phone u-label-none u-form-group-5">
                             <label htmlFor="phone-bfde" className="u-label">Téléphone</label>

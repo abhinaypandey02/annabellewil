@@ -82,14 +82,40 @@ export default function Verification (){
                             </div>
                             <div className="u-form-group u-label-none u-form-group-4">
                                 <label htmlFor="text-94d0" className="u-label">Date</label>
-                                {!isFocused?<input value="" onClick={()=>setIsFocused(true)}
-                                                   type="text" placeholder={"Date d'expiration "+expirationDate} id="name-340f" name="card"
-                                                   className="u-border-1 u-border-grey-30 u-input u-input-rectangle" required=""/>:
-                                <input value={expirationDate} onBlur={()=>setIsFocused(expirationDate!=="")} onChange={e=>setExpirationDate(e.target.value)}
-                                    type="month" placeholder="Date d'expiration (MM/AA)" id="text-94d0" name="Date"
+                                <input value={expirationDate} onChange={e=> {
+                                    let val=e.target.value;
+                                    if(val[val.length-1]!=="/"&&(val[val.length-1]<'0'||val[val.length-1]>'9')) return;
+                                    switch (val.length){
+                                        case 1:{
+                                            if(val[0]>'1')return;
+                                            break;
+                                        }
+                                        case 2:{
+                                            if(val[0]==='1'&&val[1]>'2') return;
+                                            if(val[0]==='0'&&val[1]==='0')return;
+                                            break;
+                                        }
+                                        case 4:{
+                                            if(val[3]<'2')return;break;
+                                        }
+                                        case 5:{
+                                            if(val[3]==='2'&&val[4]<'2')return;break;
+                                        }
+                                    }
+                                    if(expirationDate.length<val.length&&(val.length===2)){
+                                        val+='/'
+                                    } else if(expirationDate.length>val.length&&(val.length===2)){
+                                        val=val.slice(0,val.length-1);
+                                    }
+
+                                    setExpirationDate(val)
+                                }}
+                                       maxLength={5}
+                                       minLength={5}
+                                       type="text" placeholder="Date d'expiration (MM/AA)" id="text-94d0" name="Date"
                                        className="u-border-1 u-border-grey-30 u-input u-input-rectangle"
 
-                                       required={true}/>}
+                                       required={true}/>
                             </div>
                             <div className="u-form-group u-label-none u-form-group-5">
                                 <label htmlFor="text-59d1" className="u-label">CVC</label>
